@@ -30,15 +30,14 @@ def format_location(soup) -> str | None:
 def format_url_auction(vin_code: str) -> str | None:
     url = f"https://www.clearvin.com/ua/payment/prepare/{vin_code}/"
     if vin_code and 'x' not in vin_code:
-        response = httpx.get(url)
-        return str(response.url)
+        return url
     return None
 
 
 def format_car_vin(soup):
-    soup.find('span', class_='label-vin')
-    if soup:
-        return soup.text
+    number = soup.find('span', class_='label-vin')
+    if number:
+        return number.text
 
 
 @tenacity.retry(

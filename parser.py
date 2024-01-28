@@ -70,7 +70,7 @@ def process_detail_page(soup: BeautifulSoup, detail_url: str) -> CarDB:
     ).text.split(' ')[1]
 
     location = format_location(soup)
-    car_vin = format_car_vin(soup)
+    car_vin = str(format_car_vin(soup))
     auction_url = format_url_auction(car_vin)
 
     sold = True if soup.find('div', id='autoDeletedTopBlock') else False
