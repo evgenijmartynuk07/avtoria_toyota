@@ -4,15 +4,16 @@ import os
 import tenacity as tenacity
 from PIL import Image
 from io import BytesIO
+from bs4 import BeautifulSoup
 
 
-def format_price(soup) -> str:
+def format_price(soup: BeautifulSoup) -> str:
     price = soup.find('div', class_='price_value')
     price_element = price.find('strong', class_='')
     return price_element.text.strip()
 
 
-def format_location(soup) -> str | None:
+def format_location(soup: BeautifulSoup) -> str | None:
     try:
         location = soup.find('section', id='userInfoBlock')
         location = location.find(
@@ -34,7 +35,7 @@ def format_url_auction(vin_code: str) -> str | None:
     return None
 
 
-def format_car_vin(soup):
+def format_car_vin(soup: BeautifulSoup) -> str | None:
     number = soup.find('span', class_='label-vin')
     if number:
         return number.text
