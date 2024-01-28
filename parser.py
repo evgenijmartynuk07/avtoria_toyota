@@ -1,8 +1,9 @@
 import tenacity
 import re
-from bs4 import BeautifulSoup
-import httpx as httpx
 import asyncio
+import httpx as httpx
+
+from bs4 import BeautifulSoup
 from sqlalchemy.exc import IntegrityError
 from database.models import Car as CarDB
 from database.models import Photo as PhotoDB
